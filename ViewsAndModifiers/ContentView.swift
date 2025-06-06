@@ -7,6 +7,24 @@
 
 import SwiftUI
 
+struct ProminentTitle: ViewModifier {
+    let title: String
+    
+    func body(content: Content) -> some View {
+        Text(title)
+            .font(.largeTitle)
+            .foregroundStyle(.blue)
+            .padding()
+        content
+    }
+}
+
+extension View {
+    func prominentTitle(_ text: String) -> some View {
+        modifier(ProminentTitle(title: text))
+    }
+}
+
 struct GridStack<Content: View>: View {
     let rows: Int
     let columns: Int
@@ -22,6 +40,7 @@ struct GridStack<Content: View>: View {
                 }
             }
         }
+        .prominentTitle("Project 3")
     }
 }
 
